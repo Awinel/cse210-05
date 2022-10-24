@@ -2,7 +2,6 @@ import constants
 from game.casting.actor import Actor
 from game.shared.point import Point
 
-
 class Snake(Actor):
     """
     A long limbless reptile.
@@ -30,6 +29,7 @@ class Snake(Actor):
             previous = self._segments[i - 1]
             velocity = previous.get_velocity()
             trailing.set_velocity(velocity)
+        self.grow_tail(1)
 
     def get_head(self):
         return self._segments[0]
@@ -53,7 +53,7 @@ class Snake(Actor):
     
     def _prepare_body(self):
         x = int(constants.MAX_X / 4)
-        y = int(constants.MAX_Y / 2)
+        y = int(constants.MAX_Y / 4)
 
         for i in range(constants.SNAKE_LENGTH):
             position = Point(x - i * constants.CELL_SIZE, y)
